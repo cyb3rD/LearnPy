@@ -1,5 +1,5 @@
-#s = 'azcbobobegghakl'
-s = 'abcbcd'
+s = 'azcbobobegghakl'
+#s = 'abcbcd'
 lenS = len(s)
 index = 0
 strAlpha = s[index]
@@ -17,8 +17,16 @@ while index < lenS:
         strAlphaArray += (strAlpha + ' ')
         strAlpha = s[index]
         
-print strAlphaArray
+#print strAlphaArray
 
+splitStrAlpha = strAlphaArray.split()
+#print splitStrAlpha
 
+result = splitStrAlpha[0]
+for st in splitStrAlpha:
+    if len(st) > len(result):
+        result = st
+        
+print 'Longest substring in alphabetical order is: ' + result
 
     
