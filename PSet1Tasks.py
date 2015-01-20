@@ -37,8 +37,8 @@ def findPosInAlpha (curSymbol):
 			return curPos
 		curPos += 1
 #get next symbol
-#def getNextSymbol (index, strSource):
-#	return strSource[index+1]
+def getNextSymbol (index, strSource):
+	return strSource[index+1]
 
 index = 0
 nextIndex = 0
@@ -47,12 +47,10 @@ lenStrAlpha = 0
 iteration = 0
 # TEST: print findPosInAlpha('d')
 while curPos < lenSource:
-	
-	index = findPosInAlpha(s[curPos+iteration])
-	nextIndex = findPosInAlpha(s[curPos+iteration+1])
-	if nextIndex >= index:
-		strAlphaOrder = s[curPos: curPos+2]
-	curPos +=1
-	iteration +=1
+	for symbol in s:
+		if ord(symbol) < ord(getNextSymbol(curPos,s)):
+			strAlphaOrder += symbol
+
+		curPos += 1
 
 print strAlphaOrder
