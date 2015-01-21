@@ -11,32 +11,31 @@
 # one line: the lowest monthly payment that will pay off all debt in under 1 year, 
 # for example: Lowest Payment: 180 
 
-balance = 4773
+balance = 3926
 annualInterestRate = 0.2
-#monthlyPaymentRate = 0.04 - should be fixed!
-
 monthlyInterestRate = annualInterestRate /12.0
+
 month = 1
 totalPaid = 0.0
 
-updatedBalance = balance
+initialBalance = balance #save initial balance
 fixedMonthlyPayment = 10 #startig point
+previousBalance = initialBalance
+ 
 while month <= 12:
-    
-    previousBalance = updatedBalance    
-    #minimumMonthlyPaymentRate = monthlyPaymentRate * previousBalance
+
     totalPaid += fixedMonthlyPayment
     
     monthlyUnpaidBalance = previousBalance - fixedMonthlyPayment
+
     updatedBalance = monthlyUnpaidBalance + monthlyInterestRate * monthlyUnpaidBalance
-    #balance = updatedBalance
-       
-    
-    
+    previousBalance = updatedBalance
+        
     if month == 12 and updatedBalance > 0:
         fixedMonthlyPayment += 10
         totalPaid = 0
         month = 1
+        previousBalance = initialBalance
         continue 
         
     month += 1
