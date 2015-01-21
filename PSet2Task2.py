@@ -11,8 +11,10 @@
 # one line: the lowest monthly payment that will pay off all debt in under 1 year, 
 # for example: Lowest Payment: 180 
 
-balance = 3926
-annualInterestRate = 0.2
+
+balance = 3926 # comment beforesubmission
+annualInterestRate = 0.2 # comment beforesubmission
+
 monthlyInterestRate = annualInterestRate /12.0
 
 month = 1
