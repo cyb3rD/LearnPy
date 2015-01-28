@@ -29,24 +29,34 @@ def getGuessedWord(secretWord, lettersGuessed):
     '''
     foundPos = -1
     countSymbols = 0
+    #maskedString = ''
     for letter in lettersGuessed:
         countSymbols = secretWord.count(letter)
         
-        
-        if countSymbols >= 1: #foundPos also > 0
+        #We found symbols
+        if countSymbols >= 1: #How much?
             print 'Symbol: ' + str(letter) + ' founded ' + str(countSymbols)+ ' times!'
-            
+            #Only 1
             if countSymbols == 1: # just 1 symbol
                 foundPos = secretWord.find(letter)
                 print 'Symbol: ' + str(letter) + ' index is: [' + str(foundPos) + ']'
+                #maskedString[foundPos] = letter
+            # > 1
             else:
+                foundPos = secretWord.find(letter)
                 print 'Here we will find all positions for symbol: ' + str(letter)
                 #Search all indexes of founded symbol
-                while foundPos < len(secretWord):
+                while countSymbols > 0:
                     print foundPos
+                    foundPos = secretWord.find(letter,foundPos+1,len(secretWord))
+                    countSymbols -= 1
+                    #maskedString[foundPos] = letter
+        #Symbol NOT FOUNDED
         else:
             print 'Symbol: ' + str(letter) + ' NOT FOUNDED!'
+            #maskedString[foundPos] = '_'
             
+        #print maskedString
        
 secretWord = 'aaeelpe' 
 lettersGuessed = ['e', 'i', 'a', 'p', 'r', 's']    
