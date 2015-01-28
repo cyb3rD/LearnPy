@@ -32,7 +32,9 @@ def getGuessedWord(secretWord, lettersGuessed):
     #maskedString = ''
     for letter in lettersGuessed:
         countSymbols = secretWord.count(letter)
-        
+        #
+        # & Add symbols with push ?
+        #
         #We found symbols
         if countSymbols >= 1: #How much?
             print 'Symbol: ' + str(letter) + ' founded ' + str(countSymbols)+ ' times!'
