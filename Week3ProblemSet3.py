@@ -19,13 +19,14 @@ def radiationExposure(start, stop, step):
       between start and stop times.
     '''
     numOfSteps = (stop-start)/step
-    print "Num of steps: " + str(numOfSteps)
+    #print "Num of steps: " + str(numOfSteps)
     initStep = 0
     current = start
     exposure = 0
-    while (initStep <= numOfSteps):
-        exposure += f(current)
-        print 'Step: '+str(initStep)+'| x = '+str(current)+' F(x):'+str(f(current))+' Exp = '+str(exposure)
+    
+    while (initStep < numOfSteps):
+        exposure += step*f(current)
+        #print 'Step: '+str(initStep)+'| x = '+str(current)+' F(x):'+str(f(current))+' Exp = '+str(exposure)
         #count += 1
         current += step
         initStep += 1
@@ -34,4 +35,4 @@ def radiationExposure(start, stop, step):
 #print radiationExposure(0, 5, 1)
 #print radiationExposure(5, 11, 1)
 #print radiationExposure(0, 11, 1)
-print radiationExposure(0, 4, 0.25)
+#print radiationExposure(0, 4, 0.25)
