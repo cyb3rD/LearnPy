@@ -12,7 +12,7 @@
 import random
 import string
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "d:\GitHub\LearnPy\words.txt"
 
 def loadWords():
     """
@@ -121,16 +121,66 @@ def hangman(secretWord):
 
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE...
 
-
-
-
-
-
-# When you've completed your hangman function, uncomment these two lines
-# and run this file to test! (hint: you might want to pick your own
-# secretWord while you're testing)
-
+    import string
+    lenSecretWord = len(secretWord)
+    numOfGuesses = 8
+    alphabet = string.ascii_lowercase
+    lettersGuessed = ''
+        
+    print "Welcome to the game Hangman"
+    print "I am thinking of a word that is " + str(lenSecretWord) + " letters long"
+    
+    print "-------------"
+    print "You have " + str(numOfGuesses) + " guesses left."
+    print "Available letters: " + alphabet
+ 
+    #Main Cycle through numOfGuesses
+    while numOfGuesses > 0 :
+        userInput = raw_input("Please guess a letter: ")
+        userInput = userInput.lower()
+        
+        # check letter in Gueessed
+        if userInput in lettersGuessed:
+            guessedWord = getGuessedWord(secretWord, lettersGuessed)
+            print  "Oops! You've already guessed that letter: " +  guessedWord
+            print "-------------"
+            print "You have " + str(numOfGuesses) + " guesses left"
+            print "Available letters: " + getAvailableLetters(lettersGuessed)
+            continue
+        
+        # check letter in secretWord
+        if userInput in secretWord:
+            lettersGuessed += userInput
+            guessedWord = getGuessedWord(secretWord, lettersGuessed)
+            # check for win
+            if isWordGuessed(secretWord, lettersGuessed):
+                print "Good guess: " + guessedWord
+                print "-------------"    
+                print "Congratulations, you won!"
+                break
+            print "Good guess: " + guessedWord
+            print "-------------"
+            print "You have " + str(numOfGuesses) + " guesses left"
+            print "Available letters: " + getAvailableLetters(lettersGuessed)
+            # nextRound
+        else:
+            # else Oops! Decrement numOfGuesses
+            lettersGuessed += userInput
+            guessedWord = getGuessedWord(secretWord, lettersGuessed)
+            numOfGuesses -= 1
+            print "Oops! That letter is not in my word: " + guessedWord
+            print "-------------"
+            # You loose!
+            if numOfGuesses == 0:
+                print "Sorry, you ran out of guesses. The word was " + secretWord
+                break
+            
+            print "You have " + str(numOfGuesses) + " guesses left"
+            print "Available letters: " + getAvailableLetters(lettersGuessed)
+            
+          
 # secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+
+secretWord = 'c'
+hangman(secretWord)
