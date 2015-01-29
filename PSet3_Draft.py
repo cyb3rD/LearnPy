@@ -39,3 +39,24 @@ def getGuessedWord(secretWord, lettersGuessed):
     return maskedString
        
 print getGuessedWord('apple', ['e', 'i', 'k', 'p', 'r', 's'])
+
+def getAvailableLetters(lettersGuessed):
+    '''
+    lettersGuessed: list, what letters have been guessed so far
+    returns: string, comprised of letters that represents what letters have not
+      yet been guessed.
+    '''
+    import string 
+    alphabet = string.ascii_lowercase
+    maskedString = ''
+    strLettersGuessed = ''.join(lettersGuessed)
+    
+    for letter in alphabet:
+        foundLetterResult = strLettersGuessed.find(letter)
+        if foundLetterResult == -1:
+            maskedString += letter
+        
+    return maskedString
+    
+lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
+print getAvailableLetters(lettersGuessed)
