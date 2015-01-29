@@ -16,9 +16,7 @@ def isWordGuessed(secretWord, lettersGuessed):
     else:
          return True
          
-secretWord = 'apple' 
-lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
-print isWordGuessed(secretWord, lettersGuessed)         
+print isWordGuessed('apple', ['e', 'i', 'k', 'p', 'r', 's'])         
 
 def getGuessedWord(secretWord, lettersGuessed):
     '''
@@ -27,39 +25,17 @@ def getGuessedWord(secretWord, lettersGuessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    foundPos = -1
-    countSymbols = 0
-    #maskedString = ''
-    for letter in lettersGuessed:
-        countSymbols = secretWord.count(letter)
-        #
-        # & Add symbols with push ?
-        #
-        #We found symbols
-        if countSymbols >= 1: #How much?
-            print 'Symbol: ' + str(letter) + ' founded ' + str(countSymbols)+ ' times!'
-            #Only 1
-            if countSymbols == 1: # just 1 symbol
-                foundPos = secretWord.find(letter)
-                print 'Symbol: ' + str(letter) + ' index is: [' + str(foundPos) + ']'
-                #maskedString[foundPos] = letter
-            # > 1
-            else:
-                foundPos = secretWord.find(letter)
-                print 'Here we will find all positions for symbol: ' + str(letter)
-                #Search all indexes of founded symbol
-                while countSymbols > 0:
-                    print foundPos
-                    foundPos = secretWord.find(letter,foundPos+1,len(secretWord))
-                    countSymbols -= 1
-                    #maskedString[foundPos] = letter
-        #Symbol NOT FOUNDED
-        else:
-            print 'Symbol: ' + str(letter) + ' NOT FOUNDED!'
-            #maskedString[foundPos] = '_'
+    maskedString = ''
+    #convert list of symbols to string
+    strLettersGuessed = ''.join(lettersGuessed)
+    
+    for letter in secretWord:
+        foundLetterResult = strLettersGuessed.find(letter)
+        if foundLetterResult > -1:
             
-        #print maskedString
+            maskedString += letter
+        else:
+                maskedString += '_ '
+    return maskedString
        
-secretWord = 'aaeelpe' 
-lettersGuessed = ['e', 'i', 'a', 'p', 'r', 's']    
-print getGuessedWord(secretWord, lettersGuessed)
+print getGuessedWord('apple', ['e', 'i', 'k', 'p', 'r', 's'])
