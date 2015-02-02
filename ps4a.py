@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "d:\GitHub\Python-Tutorial\ProblemSet4\words.txt"
+WORDLIST_FILENAME = "d:\MyGitHub\LearnPy\ps4_words.txt"
 
 def loadWords():
     """
@@ -177,9 +177,22 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # check for word in wordList
+    if word not in wordList:
+        return False
     
+    # word in wordlist
+    myHand = hand.copy()
+    inHand = True
+    for letter in word:
+        if myHand.get(letter, 0 ) > 0:
+            myHand[letter] -= 1
+            if myHand[letter] < 0:
+                inHand = False
+        else:
+            inHand = False
     
+    return inHand
 #
 # Problem #4: Playing a hand
 #
