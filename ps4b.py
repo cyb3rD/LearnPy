@@ -117,21 +117,64 @@ def playGame(wordList):
     wordList: list (string)
     """
     # TO DO... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this when you code this function
-
+    #print "playGame not yet implemented." # <-- Remove this when you code this function
+    gameHand = ''
+    endGame = False
+    # Main game cycle
+    while not endGame:
+        startGame = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
         
-#
+        # Type of the game: n - new hand, r - replay the last hand
+        while (startGame not in ('n','r','e')):
+            print "Invalid command."
+            startGame = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        
+        # call 'r' first (if gameHand is empty)
+        if startGame == 'r' and gameHand == '':
+            while (startGame not in ('n','e')):
+                print "You have not played a hand yet. Please play a new hand first!"
+                startGame = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        # exit game        
+        if startGame == 'e':
+            endGame = True
+            break    
+                  
+        # Who will play: u - user, c - computer
+        choosePlayer = raw_input("Enter u to have yourself play, c to have the computer play: ")
+        while (choosePlayer not in ('u','c')):
+            print "Invalid command."
+            choosePlayer = raw_input("Enter u to have yourself play, c to have the computer play: ")
+        
+        # User play    
+        if choosePlayer == 'u':
+            # new game
+            if startGame == 'n':
+                gameHand = dealHand(HAND_SIZE)
+                playHand(gameHand, wordList, HAND_SIZE)
+            # last hand
+            else:
+                # if NOT empty hand
+                if gameHand != '':
+                    playHand(gameHand, wordList, HAND_SIZE)
+                else:
+                    print "You have not played a hand yet. Please play a new hand first!"
+                    continue
+        # Computer play:
+        else:
+            # new game
+            if startGame == 'n':
+                gameHand = dealHand(HAND_SIZE)
+                compPlayHand(gameHand, wordList, HAND_SIZE)
+            # last hand
+            else:
+                # if NOT empty hand
+                if gameHand != '':
+                    compPlayHand(gameHand, wordList, HAND_SIZE)
+                else:
+                    continue
+#   
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
     wordList = loadWords()
-#    playGame(wordList)
-
-    print "-------Test Case 1 --------"
-    compPlayHand({'a': 1, 'p': 2, 's': 1, 'e': 1, 'l': 1}, wordList, 6)
-
-#    print "-------Test Case 2 --------"
-#    compPlayHand({'a': 2, 'c': 1, 'b': 1, 't': 1}, wordList, 5)
-
-#    print "-------Test Case 3 --------"
-#    compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
+    playGame(wordList)
