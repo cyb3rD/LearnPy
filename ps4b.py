@@ -66,7 +66,28 @@ def compPlayHand(hand, wordList, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
     # TO DO ... <-- Remove this comment when you code this function
+    compTotalScore = 0
     
+    while calculateHandlen(hand) > 0:
+        print "Current hand: ", 
+        # Here we print just the output of the function not it's returned value
+        displayHand(hand)
+        # Computer choose word
+        compWord = compChooseWord(hand, wordList, n)
+        # Check for word
+        if compWord == None:
+            break
+        # if Valid word
+        else:
+            compTotalScore += getWordScore(compWord, n)
+            # Display word and score
+            print '"'+compWord+'"'+' earned ' + str(getWordScore(compWord, n)) + ' points. Total: ' + str(compTotalScore) + ' points'
+            print
+            # Update the hand 
+            hand = updateHand(hand, compWord)
+    
+    print 'Total score: ' + str(compTotalScore) + ' points.' 
+
 #
 # Problem #8: Playing a game
 #
@@ -104,6 +125,13 @@ def playGame(wordList):
 #
 if __name__ == '__main__':
     wordList = loadWords()
-    playGame(wordList)
+#    playGame(wordList)
 
+    print "-------Test Case 1 --------"
+    compPlayHand({'a': 1, 'p': 2, 's': 1, 'e': 1, 'l': 1}, wordList, 6)
 
+#    print "-------Test Case 2 --------"
+#    compPlayHand({'a': 2, 'c': 1, 'b': 1, 't': 1}, wordList, 5)
+
+#    print "-------Test Case 3 --------"
+#    compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
