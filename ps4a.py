@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "d:\MyGitHub\LearnPy\ps4_words.txt"
+WORDLIST_FILENAME = "d:\GitHub\LearnPy\ps4_words.txt"
 
 def loadWords():
     """
@@ -288,17 +288,42 @@ def playGame(wordList):
     2) When done playing the hand, repeat from step 1    
     """
     # TO DO ... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this line when you code the function
-   
-
+    #print "playGame not yet implemented." # <-- Remove this line when you code the function
+    myHand = ''
+    endGame = False
+    # Until user pressed 'e' to exit game
+    while not endGame:
+        startGame = raw_input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        
+        # Deal new hand
+        if startGame == 'n':
+            myHand = dealHand(HAND_SIZE)
+            playHand(myHand, wordList, HAND_SIZE)
+        # Play prev.hand again
+        else:
+            if startGame == 'r':
+                if myHand != '':
+                    playHand(myHand, wordList, HAND_SIZE)
+                else:
+                    print "You have not played a hand yet. Please play a new hand first!"
+                    continue
+            # End of the game
+            else:
+                if startGame == 'e':
+                    endGame = True    
+                else:    
+                #if startGame != 'n' or
+                    print "Invalid command."
+        continue
+    # user exit game
+    print
 
 
 #
 # Build data structures used for entire session and play game
 #
-#if __name__ == '__main__':
-#    wordList = loadWords()
-#    playGame(wordList)
+if __name__ == '__main__':
+    wordList = loadWords()
+    playGame(wordList)
 
-wordList = loadWords()
-playHand({'h':1, 'i':1, 'c':1, 'z':1, 'm':2, 'a':1}, wordList, 7)
+
