@@ -19,6 +19,16 @@ def myLog(x, b):
 print myLog(16,2)
 print myLog(15,3)
 
+def laceStrings(s1, s2):
+    """
+    s1 and s2 are strings.
+
+    Returns a new str with elements of s1 and s2 interlaced,
+    beginning with s1. If strings are not of same length, 
+    then the extra elements should appear at the end.
+    """
+    # Your Code Here
+
 def laceStringsRecur(s1, s2):
     """
     s1 and s2 are strings.
