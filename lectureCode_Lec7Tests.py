@@ -24,10 +24,10 @@ def silly(n):
         elem = raw_input('Enter element: ')
         result.append(elem)
         # 2. Try to find wjere the bug is
-        print(result)
+        #print(result)
     if isPal(result):
         # 1. Try to find wjere the bug is
-        print(result)
+        #print(result)
         print('Yes')
     else:
         print('No')
