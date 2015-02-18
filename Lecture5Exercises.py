@@ -105,23 +105,20 @@ def semordnilap(str1, str2):
     returns: True if str1 and str2 are semordnilap;
              False otherwise.
     '''
-    str1Pos = 0
-    str2Pos = len(str2)-1
-    # check for single-length, equal strings, length of strings
-    if (len(str1) != len(str2)):
+# If strings aren't the same length, they cannot be semordnilap
+    if len(str1) != len(str2):
         return False
-    # check if two strings are palindromes
+
+    # Base case: if the strings are each of length 1, check if they're equal
+    if len(str1) == 1:
+        return str1 == str2
+
+    # Recursive case: check if the first letter of str1 equals the last letter
+    # of str2
+    if str1[0] == str2[-1]:
+        return semordnilap(str1[1:], str2[:-1])
     else:
-        if str1[str1Pos] != str2[str2Pos]:
-            #return False
-            isPalindrome = False
-            #break
-        else:
-        #if str1[0:str1Pos] == str2[str2Pos:]:
-            str1Pos += 1
-            str2Pos -= 1
-            semordnilapWrapper(str1[str1Pos:], str2[0:str2Pos+1])
-            
+        return False
             
 print  semordnilap('live', 'evil')  
 print  semordnilap('lives', 'evil') 
